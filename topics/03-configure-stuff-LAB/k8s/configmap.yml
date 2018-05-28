@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configure-stuff
+  labels:
+    app: configure-stuff
+# TODO 03-01 create an inline file called "application.properties" with the content "some.value=123"

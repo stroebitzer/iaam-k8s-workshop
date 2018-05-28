@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dns-app2
+  labels:
+    app: dns-app2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dns-app2
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: dns-app2
+          image: localhost:5000/dns-app2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+

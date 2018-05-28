@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: lifecycle
+  labels:
+    app: lifecycle
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: lifecycle
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: lifecycle
+          image: localhost:5000/lifecycle
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /live
+            initialDelaySeconds: 20
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /ready
+            initialDelaySeconds: 20
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3

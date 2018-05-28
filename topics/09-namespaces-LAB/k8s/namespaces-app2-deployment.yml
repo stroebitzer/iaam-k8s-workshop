@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: hades
+  name: namespaces-app2
+  labels:
+    app: namespaces-app2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: namespaces-app2
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: namespaces-app2
+          image: localhost:5000/namespaces-app2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+

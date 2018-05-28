@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: init-container
+spec:
+  type: NodePort
+  ports:
+  - name: init-container
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: init-container

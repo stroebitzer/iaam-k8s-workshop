@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: resources
+  labels:
+    app: resources
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: resources
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: lifecycle
+          image: localhost:5000/resources
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          # TODO 07-01 ensure that Pod has 0,5 GB memory and 0,5 cpus ensured
+          # TODO 07-02 limit the Pod to have max 0,75 GB memory and 1 cpu in use

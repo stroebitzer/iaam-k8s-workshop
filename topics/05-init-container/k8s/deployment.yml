@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: init-container
+  labels:
+    app: init-container
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: init-container
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: init-container
+          image: localhost:5000/init-container
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      initContainers:
+        - name: wirte-stuff-into-file
+          image: busybox
+          command: ['sh', '-c', 'mkdir /data; echo stuff > /data/file.txt ']
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          emptyDir: {}
+
+

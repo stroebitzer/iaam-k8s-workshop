@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-k8s
+  labels:
+    app: hello-k8s
+spec:
+  hostNetwork: true
+  terminationGracePeriodSeconds: 0
+  containers:
+    - name: hello-k8s
+      image: localhost:5000/hello-k8s
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080

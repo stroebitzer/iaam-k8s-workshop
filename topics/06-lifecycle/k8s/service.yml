@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lifecycle
+spec:
+  type: NodePort
+  ports:
+  - name: lifecycle
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: lifecycle

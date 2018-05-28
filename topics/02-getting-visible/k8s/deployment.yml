@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: getting-visible
+  labels:
+    app: getting-visible
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: getting-visible
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: getting-visible
+          image: localhost:5000/getting-visible
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

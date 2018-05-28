@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: configure-stuff
+  labels:
+    app: configure-stuff
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: configure-stuff
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: configure-stuff
+          image: localhost:5000/configure-stuff
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          # TODO 03-02 mount the file in the path "/config"
+      volumes:
+        - name: config
+          configMap:
+            name: configure-stuff

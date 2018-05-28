@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: share-stuff
+  labels:
+    app: share-stuff
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: share-stuff
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: share-stuff-app1
+          image: localhost:5000/share-stuff-app1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /data
+              name: data
+        - name: share-stuff-app2
+          image: localhost:5000/share-stuff-app2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      # TODO 04-01 Create an empty volume with the name "data"

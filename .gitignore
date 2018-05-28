@@ -1,0 +1,7 @@
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+.idea/
+*.iml
+
+k8s-workshop-docker-registry/

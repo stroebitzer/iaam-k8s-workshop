@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: lifecycle
+  labels:
+    app: lifecycle
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: lifecycle
+    spec:
+      # TODO 06-01 allow the application to take 60 seconds to shut down
+      containers:
+        - name: lifecycle
+          image: localhost:5000/lifecycle
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          # TODO 06-02 create a livenessProbe which checks the endpoint /live on port 8080
+          # TODO 06-03 create a readynessProbe which checks the endpoint /ready on port 8080
+          # TODO 06-04 give the application 10 seconds before get asked for liveness
+          # TODO 06-05 accept 3 negative liveness probes before spinning up a new pod
