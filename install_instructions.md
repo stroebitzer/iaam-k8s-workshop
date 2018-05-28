@@ -1,9 +1,6 @@
 ### install gcloud
 * [TERMINAL] curl https://sdk.cloud.google.com | bash
 * [TERMINAL] exec -l $SHELL
-* [TERMINAL] gcloud init
-    * project: smec-services
-    * default compute region and zone: europe-west1-b
 
 ### install kubectl (via gcloud)
 * [TERMINAL] gcloud components install kubectl
